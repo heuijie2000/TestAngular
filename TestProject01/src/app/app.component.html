@@ -1,0 +1,81 @@
+<br>
+
+<div>
+  <dx-tree-list
+  [dataSource]="employees"
+  keyExpr="id"
+  parentIdExpr="parentId"
+  (onSaved)="onStatusSaved($event)"
+  [showRowLines]="true"
+  [showBorders]="true"
+                  
+
+>
+  <dxo-tree-list-editing
+    mode="cell" 
+    startEditAction="click"
+    [allowUpdating]="true"
+  ></dxo-tree-list-editing>
+  <dxo-tree-list-keyboard-navigation
+    [editOnKeyPress]="true"
+    [enterKeyAction]="enterKeyAction"
+    [enterKeyDirection]="enterKeyDirection"
+  >
+  </dxo-tree-list-keyboard-navigation>
+  <dxo-tree-list-column-chooser
+    #columnChooser
+    [enabled]="true"
+    [mode]="'select'"
+  >
+    <dxo-tree-list-position
+      my="right top"
+      at="right bottom"
+      of=".dx-treelist-column-chooser-button"
+    ></dxo-tree-list-position>
+
+    <dxo-tree-list-search
+      [enabled]="true"
+      [editorOptions]="true"
+    ></dxo-tree-list-search>
+
+    <dxo-tree-list-selection
+      [allowSelectAll]="true"
+      [selectByClick]="true"
+      [recursive]="true"
+    ></dxo-tree-list-selection>
+  </dxo-tree-list-column-chooser> 
+  <dxi-tree-list-column
+    dataField="Title"
+    caption="Position"
+  ></dxi-tree-list-column>
+  <dxi-tree-list-column dataField="Full_Name" ></dxi-tree-list-column>
+  <dxi-tree-list-column dataField="City" ></dxi-tree-list-column>
+  <dxi-tree-list-column dataField="State" ></dxi-tree-list-column>
+  <dxi-tree-list-column dataField="Status" caption="Status" [setCellValue]="setStatusValue">
+    <dxo-tree-list-lookup
+      [dataSource]="statusesData"
+      valueExpr="this"
+      displayExpr="this"
+    ></dxo-tree-list-lookup>
+  </dxi-tree-list-column>
+  <dxi-tree-list-column
+    dataField="Hire_Date"
+    dataType="date"
+
+  ></dxi-tree-list-column>
+  <dxi-tree-list-column dataField="id" ></dxi-tree-list-column>
+</dx-tree-list>
+
+</div>
+<!-- <ng-template #mobilePhoneHeader>
+  Mobile phone <span style="margin-left: 6px; color: #337ab7;">&#9998;</span>
+</ng-template> -->
+
+<br>
+<dx-button
+  text="Hello DevExtreme"
+  type="success"
+  (onClick)="helloWorld()">
+</dx-button>
+<router-outlet></router-outlet>
+
